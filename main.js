@@ -32,12 +32,16 @@ files.forEach((e) => {
     }
 
     let data = [];
+    let count = 0;
     results.forEach((ele) => {
       if (!(ele.REQUEST_URI == '/api/MarsCardLess/relayAuthRequest')) {
         return;
       }
       data.push(ele);
+      count++
     })
+    console.log(e);
+    console.log(`${count}個の /api/MarsCardLess/relayAuthRequest を取得`);
 
     function arrayToCSV(data) {
       // const header = Object.keys(data[0]).join(",");
@@ -51,6 +55,6 @@ files.forEach((e) => {
 
     const csv = arrayToCSV(data);
     fs.appendFileSync("output.csv", `${csv}\n`, "utf8");
-    console.log("-----CSVファイル output.csv を作成しました-----");
+    console.log("----------CSVファイル output.csv を作成しました----------");
   });  
 })
