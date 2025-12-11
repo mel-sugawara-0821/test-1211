@@ -35,7 +35,10 @@ fs.readFile("logs/debug.log", "utf8", (err, text) => {
 
   let data = [];
   results.forEach((ele) => {
-    data.push(ele)
+    if (!(ele.REQUEST_URI == '/api/MarsCardLess/relayAuthRequest')) {
+      return;
+    }
+    data.push(ele);
   })
 
   function arrayToCSV(data) {
