@@ -1,5 +1,6 @@
 const fs = require("fs");
 const files = fs.readdirSync('logs');
+let total_count = 0;
 
 files.forEach((e) => {
   fs.readFile(`logs/${e}`, "utf8", (err, text) => {
@@ -39,9 +40,10 @@ files.forEach((e) => {
       }
       data.push(ele);
       count++
+      total_count++
     })
-    console.log(e);
     console.log(`${count}個の /api/MarsCardLess/relayAuthRequest を取得`);
+    console.log(`合計: ${total_count}個`);
 
     function arrayToCSV(data) {
       // const header = Object.keys(data[0]).join(",");
