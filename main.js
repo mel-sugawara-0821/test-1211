@@ -1,5 +1,6 @@
 const fs = require("fs");
 const files = fs.readdirSync('logs');
+const TARGET_STRING = '/api/MarsCardLess/relayAuthRequest';
 let total_count = 0;
 let total_file = 0;
 
@@ -38,7 +39,7 @@ files.forEach((e) => {
     let data = [];
     let count = 0;
     results.forEach((ele) => {
-      if (!(ele.REQUEST_URI == '/api/MarsCardLess/relayAuthRequest')) {
+      if (!(ele.REQUEST_URI == TARGET_STRING)) {
         return;
       }
       data.push(ele);
@@ -50,7 +51,7 @@ files.forEach((e) => {
     }
     if (count) {
       console.log(e)
-      console.log(`${count}個の /api/MarsCardLess/relayAuthRequest を取得`);
+      console.log(`${count}個の ${TARGET_STRING} を取得`);
       console.log(`合計: ${total_count}個`);
     }
 
