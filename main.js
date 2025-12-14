@@ -12,8 +12,9 @@ files.forEach((e) => {
     }
 
     const blocks = [...text.matchAll(
-      /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}).*?Array\s*\(([\s\S]*?)\)/g
+      /(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})[\s\S]*?Debug:\s*Array\s*\(\n([\s\S]*?)\n\)/g
     )];
+
     const results = [];
 
     for (const match of blocks) {
@@ -44,6 +45,9 @@ files.forEach((e) => {
       count++
       total_count++
     })
+    if (!data.length) {
+      return;
+    }
     if (count) {
       console.log(e)
       console.log(`${count}個の /api/MarsCardLess/relayAuthRequest を取得`);
